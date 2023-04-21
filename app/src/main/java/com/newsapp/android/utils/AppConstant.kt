@@ -4,4 +4,6 @@ object AppConstant {
 
     const val API_KEY = "7502ab9197514f9792f796df2b3c35d7"
 
+    const val COUNTRY_US = "us"
+
 }

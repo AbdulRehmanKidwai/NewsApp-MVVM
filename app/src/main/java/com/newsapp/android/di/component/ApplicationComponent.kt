@@ -2,6 +2,7 @@ package com.newsapp.android.di.component
 
 import android.content.Context
 import com.newsapp.android.MyApplication
+import com.newsapp.android.data.local.database.DatabaseHelperImpl
 import com.newsapp.android.di.ApplicationContext
 import com.newsapp.android.di.api.NetworkHelper
 import com.newsapp.android.di.api.NetworkService
@@ -20,6 +21,8 @@ interface ApplicationComponent {
     fun getContext(): Context
 
     fun getNetworkService(): NetworkService
+
+    fun getDbHelper(): DatabaseHelperImpl
 
     fun getNetworkHelper(): NetworkHelper
 

@@ -1,13 +1,16 @@
 package com.newsapp.android.di.module
 
 import android.content.Context
-import com.newsapp.android.di.api.ApplicationInterceptor
-import com.newsapp.android.di.api.NetworkHelper
-import com.newsapp.android.di.api.NetworkService
+import androidx.room.Room
 import com.newsapp.android.MyApplication
+import com.newsapp.android.data.local.database.AppDatabase
+import com.newsapp.android.data.local.database.DatabaseHelperImpl
 import com.newsapp.android.di.ApplicationContext
 import com.newsapp.android.di.BaseUrl
 import com.newsapp.android.di.DatabaseName
+import com.newsapp.android.di.api.ApplicationInterceptor
+import com.newsapp.android.di.api.NetworkHelper
+import com.newsapp.android.di.api.NetworkService
 import com.newsapp.android.utils.DefaultDispatcher
 import com.newsapp.android.utils.DispatcherProvider
 import dagger.Module
@@ -33,7 +36,7 @@ class ApplicationModule(private val application: MyApplication) {
 
     @DatabaseName
     @Provides
-    fun provideDatabaseName(): String="news_app_offline"
+    fun provideDatabaseName(): String = "news_app_offline"
 
     @Provides
     @Singleton
@@ -49,8 +52,10 @@ class ApplicationModule(private val application: MyApplication) {
 
     @Provides
     @Singleton
-    fun provideNetworkService(@BaseUrl baseUrl: String, gsonConverterFactory: GsonConverterFactory,
-    okHttpClient: OkHttpClient):
+    fun provideNetworkService(
+        @BaseUrl baseUrl: String, gsonConverterFactory: GsonConverterFactory,
+        okHttpClient: OkHttpClient
+    ):
 
             NetworkService {
         return Retrofit.Builder()
@@ -63,7 +68,22 @@ class ApplicationModule(private val application: MyApplication) {
 
 
     @Provides
-    fun provideNetworkHelper(@ApplicationContext context: Context)= NetworkHelper(context)
+    fun provideNetworkHelper(@ApplicationContext context: Context) = NetworkHelper(context)
+
+
+    @Provides
+    fun provideDatabaseHelperImp(appDatabase: AppDatabase) =
+        DatabaseHelperImpl(appDatabase)
+
+    @Provides
+    fun provideAppDatabase(
+        @ApplicationContext context: Context,
+        @DatabaseName name: String
+    ): AppDatabase = Room.databaseBuilder(
+        context,
+        AppDatabase::class.java,
+        name
+    ).build()
 
 
     @Singleton
