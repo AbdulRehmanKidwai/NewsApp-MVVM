@@ -9,6 +9,7 @@ import com.newsapp.android.ui.base.BaseActivity
 import com.newsapp.android.ui.base.BaseViewModel
 import com.newsapp.android.ui.countries.CountryActivity
 import com.newsapp.android.ui.languages.LanguageActivity
+import com.newsapp.android.ui.search.SearchActivity
 import com.newsapp.android.ui.sources.NewsSourceActivity
 import com.newsapp.android.ui.topHeadlines.TopHeadlinesActivity
 
@@ -62,6 +63,8 @@ class MainActivity : BaseActivity<ActivityMainBinding,
             binding.tvNewsSources.id -> startActivity(Intent(this, NewsSourceActivity::class.java))
             binding.tvCountries.id -> startActivity(Intent(this, CountryActivity::class.java))
             binding.tvLanguages.id -> startActivity(Intent(this, LanguageActivity::class.java))
+            binding.tvSearch.id -> startActivity(Intent(this, SearchActivity::class.java))
+
         }
 
     }

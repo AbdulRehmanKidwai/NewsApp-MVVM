@@ -1,5 +1,6 @@
 package com.newsapp.android.di.component
 
+import com.newsapp.android.ui.search.SearchActivity
 import com.newsapp.android.di.ActivityScope
 import com.newsapp.android.di.module.ActivityModule
 import com.newsapp.android.ui.countries.CountryActivity
@@ -18,5 +19,6 @@ interface ActivityComponent {
     fun inject(activity:CountryActivity)
     fun inject(activity:LanguageActivity)
     fun inject(activity:LanguageNewsActivity)
+    fun inject(activity: SearchActivity)
 
 }
