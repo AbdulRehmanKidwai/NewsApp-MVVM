@@ -1,6 +1,6 @@
 ﻿# MyNewsApp
 
-This application is made to learn Kotlin with MVVM Architecture Pattern along with latest coding
+This application is made to learn Kotlin with MVVM Architecture Pattern along with the latest coding
 standard.
 
 ## Technology Used
@@ -26,7 +26,7 @@ standard.
 
 ## Key Features
 
-- News based on TopHeadlines, Sources, Countries and Languages
+- News based on TopHeadlines, Sources, Countries, and Languages
 - Offline News
 - Pagination with Paging library
 - Instant Search by Flow operator
