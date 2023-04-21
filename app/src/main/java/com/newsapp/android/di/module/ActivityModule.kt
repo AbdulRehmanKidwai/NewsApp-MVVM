@@ -4,11 +4,14 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.newsapp.android.data.local.database.DatabaseHelperImpl
+import com.newsapp.android.data.repository.NewsSourceRepository
 import com.newsapp.android.data.repository.TopHeadlinesRepository
 import com.newsapp.android.di.ActivityContext
 import com.newsapp.android.di.api.NetworkHelper
 import com.newsapp.android.di.api.NetworkService
 import com.newsapp.android.ui.base.ViewModelProviderFactory
+import com.newsapp.android.ui.sources.NewsSourceAdapter
+import com.newsapp.android.ui.sources.NewsSourceViewModel
 import com.newsapp.android.ui.topHeadlines.TopHeadlinesAdapter
 import com.newsapp.android.ui.topHeadlines.TopHeadlinesViewModel
 import com.newsapp.android.utils.DispatcherProvider
@@ -35,13 +38,24 @@ class ActivityModule(private val activity: AppCompatActivity) {
         })[TopHeadlinesViewModel::class.java]
     }
 
+    @Provides
+    fun provideNewsSourceViewModel(newsSourceRepository: NewsSourceRepository): NewsSourceViewModel {
+        return ViewModelProvider(activity, ViewModelProviderFactory(NewsSourceViewModel::class) {
+            NewsSourceViewModel(newsSourceRepository)
+        })[NewsSourceViewModel::class.java]
+    }
 
     @Provides
     fun provideTopHeadlinesAdapter() = TopHeadlinesAdapter(ArrayList())
 
+    @Provides
+    fun provideNewsSourceAdapter() = NewsSourceAdapter(ArrayList())
 
 
     @Provides
     fun provideTopHeadlinesRepository(networkService: NetworkService, databaseHelperImpl: DatabaseHelperImpl) = TopHeadlinesRepository(networkService, databaseHelperImpl)
+
+    @Provides
+    fun getNewsSourceRepository(networkService: NetworkService)= NewsSourceRepository(networkService)
 
 }

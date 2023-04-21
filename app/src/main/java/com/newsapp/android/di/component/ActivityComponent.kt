@@ -2,6 +2,7 @@ package com.newsapp.android.di.component
 
 import com.newsapp.android.di.ActivityScope
 import com.newsapp.android.di.module.ActivityModule
+import com.newsapp.android.ui.sources.NewsSourceActivity
 import com.newsapp.android.ui.topHeadlines.TopHeadlinesActivity
 import dagger.Component
 
@@ -10,5 +11,6 @@ import dagger.Component
 interface ActivityComponent {
 
     fun inject(activity:TopHeadlinesActivity)
+    fun inject(activity:NewsSourceActivity)
 
 }

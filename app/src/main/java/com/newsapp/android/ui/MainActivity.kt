@@ -7,6 +7,7 @@ import com.newsapp.android.databinding.ActivityMainBinding
 import com.newsapp.android.di.component.ActivityComponent
 import com.newsapp.android.ui.base.BaseActivity
 import com.newsapp.android.ui.base.BaseViewModel
+import com.newsapp.android.ui.sources.NewsSourceActivity
 import com.newsapp.android.ui.topHeadlines.TopHeadlinesActivity
 
 
@@ -56,7 +57,7 @@ class MainActivity : BaseActivity<ActivityMainBinding,
                     TopHeadlinesActivity::class.java
                 )
             )
-
+            binding.tvNewsSources.id -> startActivity(Intent(this, NewsSourceActivity::class.java))
 
         }
 
